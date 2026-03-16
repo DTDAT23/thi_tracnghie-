@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ôn Tập Trắc Nghiệm</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .question-block {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+        .question-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #2980b9;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 8px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .options label:hover {
+            background-color: #ecf0f1;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            color: #27ae60;
+        }
+        /* CSS cho kết quả đúng/sai */
+        .correct-answer {
+            background-color: #d4edda !important;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .wrong-answer {
+            background-color: #f8d7da !important;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Bài Thi Trắc Nghiệm</h1>
+    <div id="quiz-container"></div>
+    <button onclick="submitQuiz()">Nộp Bài & Xem Kết Quả</button>
+    <div id="result"></div>
+</div>
+
+<script>
+    // Dữ liệu câu hỏi được bóc tách từ file PDF và đánh số lại từ 1
+    const quizData = [
+        {
+            id: 1,
+            question: "Điền cụm từ thích hợp vào chỗ trống: Bạo lực về kinh tế là hành vi xâm phạm tới các quyền lợi về .............của gia đình và thành viên trong gia đình. [cite: 1, 2, 3]",
+            options: {
+                A: "sức khỏe. [cite: 4]",
+                B: "tài chính. [cite: 4]",
+                C: "kinh tế. [cite: 5]",
+                D: "vật chất. [cite: 7]"
+            },
+            correctAnswer: "C"
+        },
+        {
+            id: 2,
+            question: "Em đồng tình với ý kiến nào dưới đây? [cite: 6]",
+            options: {
+                A: "Nên xác định mục tiêu cao hơn khả năng của bản thân để có thêm động lực phấn đấu. [cite: 8]",
+                B: "Nên xác định nhiều mục tiêu cùng một lúc để có động lực phấn đấu cao hơn. [cite: 9]",
+                C: "Xác định mục tiêu giúp chúng ta có thể đến gần hơn với thành công, tích lũy được kinh nghiệm trong học tập và cuộc sống. [cite: 10, 11]",
+                D: "Trong mọi trường hợp, tuyệt đối không thay đổi mục tiêu cá nhân đã đề ra. [cite: 12]"
+            },
+            correctAnswer: "C"
+        },
+        {
+            id: 3,
+            question: "Vì sao chúng ta cần thường xuyên đánh giá mức độ thực hiện mục tiêu của bản thân? [cite: 13, 17]",
+            options: {
+                A: "Để xác định ngày hoàn thành mục tiêu đề ra. [cite: 14]",
+                B: "Để hoàn tất các nhiệm vụ. [cite: 18]",
+                C: "Không bị bỡ ngỡ trước các tình huống bất ngờ xảy ra. [cite: 15]",
+                D: "Theo dõi về tình hình thực hiện kế hoạch. [cite: 16, 19]"
+            },
+            correctAnswer: "D"
+        },
+        {
+            id: 4,
+            question: "Nội dung nào sau đây không phản ánh đúng ý nghĩa của việc xác định mục tiêu cá nhân? [cite: 20]",
+            options: {
+                A: "Giúp mỗi người có động lực đạt được mục tiêu đề ra. [cite: 22]",
+                B: "Giúp chúng ta tiết kiệm thời gian, công sức, tiền của. [cite: 23]",
+                C: "Giúp mỗi cá nhân thu được nhiều lợi ích vật chất. [cite: 24]",
+                D: "Giúp chúng ta tránh được những thất bại không đáng có. [cite: 25]"
+            },
+            correctAnswer: "C"
+        },
+        {
+            id: 5,
+            question: "Bạo lực gia đình có mấy hình thức? [cite: 26]",
+            options: {
+                A: "2 hình thức: thể chất và tinh thần. [cite: 26]",
+                B: "4 hình thức: thể chất, tinh thần, tình dục và kinh tế. [cite: 27]",
+                C: "3 hình thức: thể chất, tinh thần, tình dục. [cite: 28]",
+                D: "Không có hình thức nào. [cite: 29]"
+            },
+            correctAnswer: "B"
+        }
+    ];
+
+    const quizContainer = document.getElementById('quiz-container');
+
+    // Render câu hỏi ra giao diện
+    function renderQuiz() {
+        quizData.forEach((q, index) => {
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question-block';
+            questionDiv.id = `question-${q.id}`;
+
+            let html = `<div class="question-title">Câu ${q.id}: ${q.question}</div>`;
+            html += `<div class="options">`;
+            
+            for (const [key, value] of Object.entries(q.options)) {
+                html += `
+                    <label id="label-${q.id}-${key}">
+                        <input type="radio" name="q${q.id}" value="${key}"> 
+                        ${key}. ${value}
+                    </label>
+                `;
+            }
+            
+            html += `</div>`;
+            questionDiv.innerHTML = html;
+            quizContainer.appendChild(questionDiv);
+        });
+    }
+
+    // Xử lý nộp bài và chấm điểm
+    function submitQuiz() {
+        let score = 0;
+        let total = quizData.length;
+
+        quizData.forEach((q) => {
+            // Lấy đáp án người dùng chọn
+            const selectedOption = document.querySelector(`input[name="q${q.id}"]:checked`);
+            
+            // Xóa các class đánh dấu cũ (nếu người dùng nộp lại nhiều lần)
+            for (const key of Object.keys(q.options)) {
+                document.getElementById(`label-${q.id}-${key}`).classList.remove('correct-answer', 'wrong-answer');
+            }
+
+            if (selectedOption) {
+                const userAnswer = selectedOption.value;
+                if (userAnswer === q.correctAnswer) {
+                    score++;
+                    // Đánh dấu xanh cho đáp án đúng
+                    document.getElementById(`label-${q.id}-${userAnswer}`).classList.add('correct-answer');
+                } else {
+                    // Đánh dấu đỏ cho đáp án sai
+                    document.getElementById(`label-${q.id}-${userAnswer}`).classList.add('wrong-answer');
+                    // Hiển thị đáp án đúng
+                    document.getElementById(`label-${q.id}-${q.correctAnswer}`).classList.add('correct-answer');
+                }
+            } else {
+                // Nếu không chọn, chỉ hiển thị đáp án đúng
+                document.getElementById(`label-${q.id}-${q.correctAnswer}`).classList.add('correct-answer');
+            }
+        });
+
+        // Hiển thị điểm số
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = `Bạn đạt được: ${score} / ${total} câu!`;
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    // Khởi tạo trang web
+    renderQuiz();
+</script>
+
+</body>
+</html>
