@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ôn Tập Trắc Nghiệm</title>
+    <title>Ôn Tập Trắc Nghiệm - Công Nghệ 8</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -79,7 +79,6 @@
             text-align: center;
             color: #27ae60;
         }
-        /* CSS cho kết quả đúng/sai */
         .correct-answer {
             background-color: #d4edda !important;
             color: #155724;
@@ -95,261 +94,359 @@
 <body>
 
 <div class="container">
-    <h1>Bài Thi Trắc Nghiệm</h1>
-    <p style="text-align: center; color: #7f8c8d;"><i>Lưu ý: Các đáp án sẽ được xáo trộn ngẫu nhiên mỗi lần bạn làm mới trang (F5).</i></p>
+    <h1>Đề Cương Công Nghệ 8 (Giữa Kì II)</h1>
+    <p style="text-align: center; color: #7f8c8d;"><i>Lưu ý: Các đáp án sẽ được xáo trộn ngẫu nhiên mỗi lần bạn tải lại trang (F5).</i></p>
     <div id="quiz-container"></div>
     <button onclick="submitQuiz()">Nộp Bài & Xem Kết Quả</button>
     <div id="result"></div>
 </div>
 
 <script>
-    // Dữ liệu câu hỏi với cờ isCorrect để xác định đáp án đúng
     const quizData = [
         {
             id: 1,
-            question: "Điền cụm từ thích hợp vào chỗ trống: Bạo lực về kinh tế là hành vi xâm phạm tới các quyền lợi về .............của gia đình và thành viên trong gia đình.",
+            question: "Cấu tạo bộ truyền động bánh răng gồm mấy bộ phận?",
             options: [
-                { text: "sức khỏe.", isCorrect: false },
-                { text: "tài chính.", isCorrect: false },
-                { text: "kinh tế.", isCorrect: true },
-                { text: "vật chất.", isCorrect: false }
+                { text: "1", isCorrect: false },
+                { text: "2", isCorrect: true },
+                { text: "3", isCorrect: false },
+                { text: "4", isCorrect: false }
             ]
         },
         {
             id: 2,
-            question: "Em đồng tình với ý kiến nào dưới đây?",
+            question: "Cơ cấu tay quay - con trượt thuộc cơ cấu:",
             options: [
-                { text: "Nên xác định mục tiêu cao hơn khả năng của bản thân để có thêm động lực phấn đấu.", isCorrect: false },
-                { text: "Nên xác định nhiều mục tiêu cùng một lúc để có động lực phấn đấu cao hơn.", isCorrect: false },
-                { text: "Xác định mục tiêu giúp chúng ta có thể đến gần hơn với thành công, tích lũy được kinh nghiệm trong học tập và cuộc sống.", isCorrect: true },
-                { text: "Trong mọi trường hợp, tuyệt đối không thay đổi mục tiêu cá nhân đã đề ra.", isCorrect: false }
+                { text: "Biến chuyển động quay thành chuyển động tịnh tiến", isCorrect: true },
+                { text: "Biến chuyển động tịnh tiến thành chuyển động quay", isCorrect: false },
+                { text: "Biến chuyển động quay thành chuyển động lắc", isCorrect: false },
+                { text: "Biến chuyển động lắc thành chuyển động quay", isCorrect: false }
             ]
         },
         {
             id: 3,
-            question: "Vì sao chúng ta cần thường xuyên đánh giá mức độ thực hiện mục tiêu của bản thân?",
+            question: "Cấu tạo bộ truyền động đai không có bộ phận nào?",
             options: [
-                { text: "Để xác định ngày hoàn thành mục tiêu đề ra.", isCorrect: false },
-                { text: "Để hoàn tất các nhiệm vụ.", isCorrect: false },
-                { text: "Không bị bỡ ngỡ trước các tình huống bất ngờ xảy ra.", isCorrect: false },
-                { text: "Theo dõi về tình hình thực hiện kế hoạch.", isCorrect: true }
+                { text: "Bánh răng", isCorrect: true },
+                { text: "Bánh dẫn", isCorrect: false },
+                { text: "Bánh bị dẫn", isCorrect: false },
+                { text: "Dây đai", isCorrect: false }
             ]
         },
         {
             id: 4,
-            question: "Nội dung nào sau đây không phản ánh đúng ý nghĩa của việc xác định mục tiêu cá nhân?",
+            question: "Để truyền chuyển động quay giữa các trục song song hoặc vuông góc với nhau người ta thường sử dụng:",
             options: [
-                { text: "Giúp mỗi người có động lực đạt được mục tiêu đề ra.", isCorrect: false },
-                { text: "Giúp chúng ta tiết kiệm thời gian, công sức, tiền của.", isCorrect: false },
-                { text: "Giúp mỗi cá nhân thu được nhiều lợi ích vật chất.", isCorrect: true },
-                { text: "Giúp chúng ta tránh được những thất bại không đáng có.", isCorrect: false }
+                { text: "Bộ truyền động xích", isCorrect: false },
+                { text: "Bộ truyền chuyển động bánh răng", isCorrect: true },
+                { text: "Bộ truyền động đai", isCorrect: false },
+                { text: "Cả truyền động đai và động xích", isCorrect: false }
             ]
         },
         {
             id: 5,
-            question: "Bạo lực gia đình có mấy hình thức?",
+            question: "Đâu là ứng dụng của bộ truyền động bánh răng?",
             options: [
-                { text: "2 hình thức: thể chất và tinh thần.", isCorrect: false },
-                { text: "4 hình thức: thể chất, tinh thần, tình dục và kinh tế.", isCorrect: true },
-                { text: "3 hình thức: thể chất, tinh thần, tình dục.", isCorrect: false },
-                { text: "Không có hình thức nào.", isCorrect: false }
+                { text: "Máy nghiền bột, máy thái, máy nén khí,...", isCorrect: false },
+                { text: "Xe đạp, xe máy", isCorrect: false },
+                { text: "Đồng hồ, hộp số ô tô, xe máy,...", isCorrect: true },
+                { text: "Đáp án khác", isCorrect: false }
             ]
         },
         {
             id: 6,
-            question: "Em đồng tình với ý kiến nào dưới đây?",
+            question: "Tỉ số truyền i > 1 thì:",
             options: [
-                { text: "Nên xác định mục tiêu cao hơn khả năng của bản thân để có thêm động lực phấn đấu.", isCorrect: false },
-                { text: "Nên xác định nhiều mục tiêu cùng một lúc để có động lực phấn đấu cao hơn.", isCorrect: false },
-                { text: "Xác định mục tiêu giúp chúng ta có thể đến gần hơn với thành công, tích lũy được kinh nghiệm trong học tập và cuộc sống.", isCorrect: true },
-                { text: "Trong mọi trường hợp, tuyệt đối không thay đổi mục tiêu cá nhân đã đề ra.", isCorrect: false }
+                { text: "Truyền động giảm tốc", isCorrect: true },
+                { text: "Truyền động tăng tốc", isCorrect: false },
+                { text: "Truyền động đẳng tốc", isCorrect: false },
+                { text: "Đáp án khác", isCorrect: false }
             ]
         },
         {
             id: 7,
-            question: "Kế hoạch thực hiện mục tiêu hiệu quả khi đáp ứng các yêu cầu nào sau đây?",
+            question: "Trong cơ cấu tay quay thanh lắc, khâu dẫn là cách gọi khác của:",
             options: [
-                { text: "Phù hợp với môi trường.", isCorrect: false },
-                { text: "Phù hợp về thời gian.", isCorrect: false },
-                { text: "Phù hợp với bản thân.", isCorrect: false },
-                { text: "Phù hợp với bản thân, phù hợp với môi trường, phù hợp thời gian.", isCorrect: true }
+                { text: "Tay quay", isCorrect: true },
+                { text: "Thanh truyền", isCorrect: false },
+                { text: "Thanh lắc", isCorrect: false },
+                { text: "Giá đỡ", isCorrect: false }
             ]
         },
         {
             id: 8,
-            question: "Nội dung nào sau đây không phản ánh đúng ý nghĩa của việc xác định mục tiêu cá nhân?",
+            question: "Người lắp ráp, lắp đặt, bảo trì, sửa chữa các động cơ, máy móc, thiết bị cơ khí là đặc điểm của ngành nghề nào thuộc lĩnh vực cơ khí?",
             options: [
-                { text: "Giúp mỗi người có động lực đạt được mục tiêu đề ra.", isCorrect: false },
-                { text: "Giúp chúng ta tiết kiệm thời gian, công sức, tiền của.", isCorrect: false },
-                { text: "Giúp mỗi cá nhân thu được nhiều lợi ích vật chất.", isCorrect: true },
-                { text: "Giúp chúng ta tránh được những thất bại không đáng có.", isCorrect: false }
+                { text: "Kĩ thuật cơ khí", isCorrect: false },
+                { text: "Kĩ thuật viên", isCorrect: false },
+                { text: "Thợ cơ khí", isCorrect: true },
+                { text: "Thợ lắp đặt máy móc thiết bị", isCorrect: false }
             ]
         },
         {
             id: 9,
-            question: "Nhân vật nào dưới đây đã chi tiêu, sử dụng tiền chưa hợp lí?",
+            question: "Người thực hiện các nhiệm vụ để hỗ trợ nghiên cứu và thiết kế sản xuất, lắp ráp, xây dựng, vận hành, sửa chữa máy móc, thiết bị là đặc điểm của ngành nghề nào thuộc lĩnh vực cơ khí?",
             options: [
-                { text: "Bạn T chia số tiền mình có thành nhiều khoản với mục đích khác nhau.", isCorrect: false },
-                { text: "Anh K dùng 40% số tiền hiện có để chi tiêu cho các nhu cầu thiết yếu.", isCorrect: false },
-                { text: "Mỗi tháng Chị V tiết kiệm 1 triệu đồng để dự phòng rủi ro phát sinh.", isCorrect: false },
-                { text: "Chị N dùng tiền lương và vay thêm tiền để mua chiếc túi xách hàng hiệu.", isCorrect: true }
+                { text: "Kĩ sư cơ khí", isCorrect: false },
+                { text: "Kĩ thuật viên kĩ thuật cơ khí", isCorrect: true },
+                { text: "Thợ cơ khí", isCorrect: false },
+                { text: "Thợ lắp đặt máy móc thiết bị", isCorrect: false }
             ]
         },
         {
             id: 10,
-            question: "Nhân vật nào dưới đây có thói quen chi tiêu không hợp lí?",
+            question: "Đâu không phải công việc của kĩ sư cơ khí?",
             options: [
-                { text: "Bạn A luôn xác định thứ tự ưu tiên những thứ cần mua.", isCorrect: false },
-                { text: "Anh K chỉ chi tiêu cho những việc thực sự cần thiết.", isCorrect: false },
-                { text: "Chị H luôn chọn mua những đồ rẻ, chất lượng thấp.", isCorrect: true },
-                { text: "Trước khi đi mua sắm, bạn M thường liệt kê đồ cần mua.", isCorrect: false }
+                { text: "Thiết kế máy móc, công cụ sản xuất", isCorrect: false },
+                { text: "Lắp ráp, kiểm tra, thay thế và bảo dưỡng động cơ xe cơ giới", isCorrect: true },
+                { text: "Lắp đặt thiết bị, vận hành và bảo trì hệ thống máy móc", isCorrect: false },
+                { text: "Sửa chữa, bảo trì máy móc", isCorrect: false }
             ]
         },
         {
             id: 11,
-            question: "Thấy L và N thường mua đồ ăn vặt được bày bán trước cổng trường, bạn A đã nhắc nhở và khuyên hai bạn không nên chi tiêu như vậy, vì vừa tốn kém và vừa ảnh hưởng đến sức khỏe. Bạn học sinh nào trong tình huống trên chưa biết chi tiêu hợp lí?",
+            question: "Đâu là ngành nghề thuộc lĩnh vực cơ khí?",
             options: [
-                { text: "Bạn A.", isCorrect: false },
-                { text: "Bạn L.", isCorrect: false },
-                { text: "Bạn N.", isCorrect: false },
-                { text: "Hai bạn L và N.", isCorrect: true }
+                { text: "Thợ luyện kim loại", isCorrect: false },
+                { text: "Thợ lắp đặt máy móc thiết bị", isCorrect: false },
+                { text: "Thợ cơ khí và sửa chữa máy móc", isCorrect: true },
+                { text: "Thợ hàn", isCorrect: false }
             ]
         },
         {
             id: 12,
-            question: "Bạn A rất thích những mô hình lắp ráp 3D Lego mô phỏng các nhân vật siêu anh hùng. Hằng tháng, bạn đều dành tất cả số tiền tiêu vặt mẹ cho để mua mô hình. Sáng chủ nhật, trong lúc dạo phố cùng với bạn N, bạn A thấy cô bán hàng trưng bày một bộ mô hình mới, nhưng A đã hết sạch tiền tiêu vặt. A bèn quay sang nói với N “Cậu cho mình vay tiền mua bộ Lego mới này nhé, tháng sau mình sẽ gửi tiền trả lại cho cậu”. N nên chọn cách ứng xử nào?",
+            question: "Đâu là yêu cầu cơ bản về năng lực với kĩ sư cơ khí?",
             options: [
-                { text: "Từ chối và lập tức bỏ về, không đi chơi với A nữa.", isCorrect: false },
-                { text: "Giả vờ không mang tiền để không phải cho bạn vay.", isCorrect: false },
-                { text: "Đồng ý cho A mượn mặc dù trong lòng cảm thấy khó chịu.", isCorrect: false },
-                { text: "Từ chối, khuyên A nên tiết kiệm trong chi tiêu.", isCorrect: true }
+                { text: "Có hiểu biết, sử dụng thành thạo máy móc trong lĩnh vực làm việc", isCorrect: false },
+                { text: "Có kiến thức về động cơ đốt trong", isCorrect: false },
+                { text: "Có kĩ năng tính toán, tư duy kĩ thuật", isCorrect: true },
+                { text: "Có hiểu biết về dung sai và đo lường", isCorrect: false }
             ]
         },
         {
             id: 13,
-            question: "Ý nghĩa của việc xác định mục tiêu cá nhân là gì?",
+            question: "Sau khi cứu nạn nhân bị điện giật trường hợp nạn nhân còn tỉnh ta nên làm thế nào?",
             options: [
-                { text: "Tạo động lực, định hướng hoạt động và tiết kiệm thời gian.", isCorrect: true },
-                { text: "Giúp con người sống phụ thuộc vào người khác.", isCorrect: false },
-                { text: "Khiến con người cảm thấy áp lực và mệt mỏi.", isCorrect: false },
-                { text: "Không mang lại tác dụng gì cho cuộc sống.", isCorrect: false }
+                { text: "Để nạn nhân nằm chỗ thoáng, gọi người sơ cứu.", isCorrect: false },
+                { text: "Để nạn nhân nằm chỗ thoáng, báo nhân viên y tế. Tuyệt đối không cho ăn uống gì.", isCorrect: true },
+                { text: "Để nạn nhân nằm chỗ thoáng, báo nhân viên y tế. Cho nạn nhân uống nước.", isCorrect: false },
+                { text: "Hô hấp nhân tạo cho nạn nhân", isCorrect: false }
             ]
         },
         {
             id: 14,
-            question: "Đâu không phải là một bước trong quy trình lập kế hoạch thực hiện mục tiêu cá nhân?",
+            question: "Một người đang đứng dưới đất, tay chạm vào tủ lạnh rò điện. Em phải làm gì để tách nạn nhân ra khỏi nguồn điện?",
             options: [
-                { text: "Liệt kê các việc cần làm.", isCorrect: false },
-                { text: "Sắp xếp công việc theo thứ tự ưu tiên.", isCorrect: false },
-                { text: "Chỉ cần nghĩ trong đầu mà không cần viết ra.", isCorrect: true },
-                { text: "Điều chỉnh cách thức thực hiện nếu hoàn cảnh thay đổi.", isCorrect: false }
+                { text: "Dùng tay trần kéo nạn nhân rời khỏi tủ lạnh", isCorrect: false },
+                { text: "Gọi người đến cứu", isCorrect: false },
+                { text: "Rút phích cắm (nắp) cầu chì hoặc ngắt aptomat, lót tay bằng vải khô kéo nạn nhân ra.", isCorrect: true },
+                { text: "Lót tay bằng vải khô kéo nạn nhân rời khỏi tủ lạnh", isCorrect: false }
             ]
         },
         {
             id: 15,
-            question: "Điền cụm từ thích hợp vào chỗ trống để hoàn thành nội dung sau: “.......để lại nhiều hậu quả cho mỗi cá nhân, gia đình và xã hội”.",
+            question: "Đâu là nguyên nhân gây tại nạn điện do vi phạm hành lang an toàn lưới điện?",
             options: [
-                { text: "Tệ nạn xã hội.", isCorrect: false },
-                { text: "Bạo lực gia đình.", isCorrect: true },
-                { text: "Chia sẻ việc nhà.", isCorrect: false },
-                { text: "Bệnh dịch.", isCorrect: false }
+                { text: "Sử dụng nhiều đồ dùng điện có công suất lớn trên cùng ổ cắm điện", isCorrect: false },
+                { text: "Lại gần khu vực mưa bão to làm đứt dây điện và rơi xuống đất", isCorrect: false },
+                { text: "Chạm vào máy giặt có vỏ bằng kim loại dùng lâu ngày hỏng vỏ cách điện", isCorrect: false },
+                { text: "Đến gần đường dây điện cao áp, trạm biến áp", isCorrect: true }
             ]
         },
         {
             id: 16,
-            question: "Điền cụm từ thích hợp vào chỗ trống để hoàn thành nội dung sau: Bạo lực tinh thần là những...., thái độ, hành vi làm tổn thương tới danh dự, nhân phẩm, tâm lí của các thành viên trong gia đình.",
+            question: "Hai bộ phận quan trọng của bút thử điện là?",
             options: [
-                { text: "lời nói.", isCorrect: true },
-                { text: "việc làm.", isCorrect: false },
-                { text: "cử chỉ.", isCorrect: false },
-                { text: "hành động.", isCorrect: false }
+                { text: "Điện trở và thân bút", isCorrect: false },
+                { text: "Thân bút và đèn báo", isCorrect: false },
+                { text: "Điện trở và đèn báo", isCorrect: true },
+                { text: "Đầu bút thử điện và thân bút", isCorrect: false }
             ]
         },
         {
             id: 17,
-            question: "Khi xác định mục tiêu cá nhân, mục tiêu cần đảm bảo tính chất gì?",
+            question: "Đâu không phải nguyên tắc an toàn khi sử dụng thiết bị, đồ dùng điện?",
             options: [
-                { text: "Càng xa vời càng tốt.", isCorrect: false },
-                { text: "Cụ thể, rõ ràng và có thể thực hiện được.", isCorrect: true },
-                { text: "Chỉ cần mục tiêu của người khác.", isCorrect: false },
-                { text: "Không cần thời hạn cụ thể.", isCorrect: false }
+                { text: "Không sử dụng dây dẫn có vỏ cách điện bị hở, hỏng", isCorrect: false },
+                { text: "Cắm nhiều đồ dùng điện có công suất lớn trên cùng ổ cắm", isCorrect: true },
+                { text: "Không để đồ vật dễ cháy gần đường dây điện và đồ dùng điện sinh nhiệt", isCorrect: false },
+                { text: "Khi sửa chữa điện phải cắt nguồn điện và có biển thông báo", isCorrect: false }
             ]
         },
         {
             id: 18,
-            question: "Trong các hành vi sau, hành vi nào là đúng khi xác định mục tiêu cá nhân?",
+            question: "Đâu không phải nguyên nhân gây mất an toàn điện?",
             options: [
-                { text: "Bạn A đặt mục tiêu học giỏi tiếng Anh nhưng không bao giờ học bài.", isCorrect: false },
-                { text: "Bạn B lập danh sách các việc cần làm và ưu tiên việc quan trọng trước.", isCorrect: true },
-                { text: "Bạn C chỉ làm việc khi có người nhắc nhở.", isCorrect: false },
-                { text: "Bạn D bỏ cuộc ngay lần đầu tiên thất bại.", isCorrect: false }
+                { text: "Chạm trực tiếp vào cực của ổ cắm điện", isCorrect: false },
+                { text: "Chạm trực tiếp vào dây dẫn điện có vỏ cách điện", isCorrect: true },
+                { text: "Chạm vào máy giặt có vỏ bằng kim loại dùng lâu ngày hỏng vỏ cách điện", isCorrect: false },
+                { text: "Sửa chữa điện khi chưa cắt nguồn điện", isCorrect: false }
             ]
         },
         {
             id: 19,
-            question: "Vì sao chúng ta cần thường xuyên đánh giá mức độ thực hiện mục tiêu của bản thân?",
+            question: "Các bước cứu người bị tai nạn điện là?<br>1. Đưa nạn nhân đến trạm y tế<br>2. Tách nạn nhân ra khỏi nguồn điện<br>3. Ngắt nguồn điện ở nơi gần nhất<br>4. Đưa nạn nhân đến nơi thoáng khí để thực hiện kiểm tra hô hấp và sơ cứu",
             options: [
-                { text: "Để xác định ngày hoàn thành mục tiêu đề ra.", isCorrect: false },
-                { text: "Để hoàn tất các nhiệm vụ.", isCorrect: false },
-                { text: "Không bị bỡ ngỡ trước các tình huống bất ngờ xảy ra.", isCorrect: false },
-                { text: "Theo dõi về tình hình thực hiện kế hoạch.", isCorrect: true }
+                { text: "1 - 2 - 3 - 4", isCorrect: false },
+                { text: "3 - 2 - 4 - 1", isCorrect: false },
+                { text: "2 - 3 - 4 - 1", isCorrect: true },
+                { text: "4 - 3 - 1 - 2", isCorrect: false }
             ]
         },
         {
             id: 20,
-            question: "Việc lập kế hoạch chi tiêu giúp chúng ta điều gì?",
+            question: "Trong các dụng cụ sau, dụng cụ nào không phải là dụng cụ an toàn điện?",
             options: [
-                { text: "Tiêu hết tiền nhanh chóng.", isCorrect: false },
-                { text: "Kiểm soát được tài chính và đạt mục tiêu.", isCorrect: true },
-                { text: "Không cần phải tiết kiệm.", isCorrect: false },
-                { text: "Vay mượn nhiều tiền hơn.", isCorrect: false }
+                { text: "Giày cao su cách điện", isCorrect: false },
+                { text: "Giá cách điện", isCorrect: false },
+                { text: "Dụng cụ lao động không có chuôi cách điện", isCorrect: true },
+                { text: "Thảm cao su cách điện", isCorrect: false }
             ]
         },
         {
             id: 21,
-            question: "Bước đầu tiên trong quy trình lập kế hoạch chi tiêu là gì?",
+            question: "Sơ đồ khối cấu trúc chung của mạch điện là:",
             options: [
-                { text: "Thực hiện chi tiêu.", isCorrect: false },
-                { text: "Kiểm tra lại kế hoạch.", isCorrect: false },
-                { text: "Xác định mục tiêu và nhu cầu chi tiêu.", isCorrect: true },
-                { text: "Tiết kiệm tiền.", isCorrect: false }
+                { text: "Truyền dẫn, đóng, cắt, điều khiển và bảo vệ -> Nguồn điện -> Tải tiêu thụ điện", isCorrect: false },
+                { text: "Tải tiêu thụ điện -> Truyền dẫn, đóng, cắt, điều khiển và bảo vệ -> Nguồn điện", isCorrect: false },
+                { text: "Nguồn điện -> Truyền dẫn, đóng, cắt, điều khiển và bảo vệ -> Tải tiêu thụ điện", isCorrect: true },
+                { text: "Nguồn điện -> Tải tiêu thụ điện -> Truyền dẫn, đóng, cắt, điều khiển và bảo vệ", isCorrect: false }
             ]
         },
         {
             id: 22,
-            question: "Đâu là một hành vi chi tiêu hợp lý?",
+            question: "Tải tiêu thụ điện biến đổi điện năng thành nhiệt năng là?",
             options: [
-                { text: "Mua sắm theo sở thích nhất thời.", isCorrect: false },
-                { text: "Mua tất cả những gì bạn bè có.", isCorrect: false },
-                { text: "Lập kế hoạch và ưu tiên nhu cầu thiết yếu.", isCorrect: true },
-                { text: "Dùng hết số tiền tiết kiệm để mua đồ chơi.", isCorrect: false }
+                { text: "Quạt điện", isCorrect: false },
+                { text: "Nồi cơm điện", isCorrect: true },
+                { text: "Bóng đèn điện", isCorrect: false },
+                { text: "Camera an ninh", isCorrect: false }
             ]
         },
         {
             id: 23,
-            question: "Khi lập kế hoạch chi tiêu, cần lưu ý điều gì?",
+            question: "Thiết bị có chức năng đóng cắt và bảo vệ mạch điện khi có sự cố là?",
             options: [
-                { text: "Kế hoạch phải luôn thay đổi hàng ngày.", isCorrect: false },
-                { text: "Chỉ cần lập kế hoạch mà không cần thực hiện.", isCorrect: false },
-                { text: "Cân đối giữa thu nhập và các nhu cầu.", isCorrect: true },
-                { text: "Không cần quan tâm đến các khoản chi bất ngờ.", isCorrect: false }
+                { text: "Công tắc", isCorrect: false },
+                { text: "Cầu dao điện", isCorrect: false },
+                { text: "Cầu chì", isCorrect: false },
+                { text: "Aptomat", isCorrect: true }
             ]
         },
         {
             id: 24,
-            question: "Tại sao cần kiểm tra lại kế hoạch chi tiêu?",
+            question: "Đâu là đặc điểm của nguồn điện?",
             options: [
-                { text: "Để tìm cách tiêu nhiều hơn.", isCorrect: false },
-                { text: "Để đánh giá hiệu quả và điều chỉnh nếu cần thiết.", isCorrect: true },
-                { text: "Để hủy bỏ kế hoạch cũ.", isCorrect: false },
-                { text: "Để khoe với mọi người.", isCorrect: false }
+                { text: "Tiêu thụ năng lượng điện", isCorrect: false },
+                { text: "Đóng, cắt nguồn điện, điều khiển hoạt động của tải và bảo vệ an toàn cho mạch điện", isCorrect: false },
+                { text: "Cung cấp năng lượng cho toàn mạch điện", isCorrect: true },
+                { text: "Kết nối các bộ phận của mạch điện", isCorrect: false }
+            ]
+        },
+        {
+            id: 25,
+            question: "Bộ phận nào có chức năng đóng, ngắt mạch điện tự động theo chương trình đã được lập trình sẵn?",
+            options: [
+                { text: "Công tắc nổi", isCorrect: false },
+                { text: "Aptomat", isCorrect: false },
+                { text: "Công tắc điện từ", isCorrect: false },
+                { text: "Mô đun điều khiển", isCorrect: true }
+            ]
+        },
+        {
+            id: 26,
+            question: "Ở nước ta, mạng điện trong nhà có cấp điện áp là:",
+            options: [
+                { text: "220V", isCorrect: true },
+                { text: "110V", isCorrect: false },
+                { text: "380V", isCorrect: false },
+                { text: "210V", isCorrect: false }
+            ]
+        },
+        {
+            id: 27,
+            question: "Đâu là đặc điểm của tải tiêu thụ điện?",
+            options: [
+                { text: "Tiêu thụ năng lượng điện", isCorrect: true },
+                { text: "Đóng, cắt nguồn điện, điều khiển hoạt động của tải và bảo vệ an toàn cho mạch điện", isCorrect: false },
+                { text: "Cung cấp năng lượng cho toàn mạch điện", isCorrect: false },
+                { text: "Kết nối các bộ phận của mạch điện", isCorrect: false }
+            ]
+        },
+        {
+            id: 28,
+            question: "Đồ dùng điện, mạch điện được cầu chì bảo vệ khi xảy ra hiện tượng gì?",
+            options: [
+                { text: "Ngắn mạch", isCorrect: false },
+                { text: "Quá tải", isCorrect: false },
+                { text: "Ngắn mạch hoặc quá tải", isCorrect: true },
+                { text: "Ngắn mạch và quá tải", isCorrect: false }
+            ]
+        },
+        {
+            id: 29,
+            question: "Quạt tự động bật khi trời nóng và tắt khi trời mát sử dụng mô đun cảm biến nào?",
+            options: [
+                { text: "Mô đun cảm biến ánh sáng", isCorrect: false },
+                { text: "Mô đun cảm biến độ ẩm", isCorrect: false },
+                { text: "Mô đun cảm biến nhiệt độ", isCorrect: true },
+                { text: "Mô đun cảm biến hồng ngoại", isCorrect: false }
+            ]
+        },
+        {
+            id: 30,
+            question: "Sơ đồ khối mạch điện điều khiển không gồm bộ phận nào?",
+            options: [
+                { text: "Nguồn điện", isCorrect: false },
+                { text: "Điều khiển", isCorrect: false },
+                { text: "Tải tiêu thụ điện", isCorrect: false },
+                { text: "Bộ phận truyền dẫn", isCorrect: true }
+            ]
+        },
+        {
+            id: 31,
+            question: "Đâu là vai trò của nguồn điện trong mạch điện điều khiển?",
+            options: [
+                { text: "Cung cấp năng lượng cho toàn mạch", isCorrect: true },
+                { text: "Điều khiển hoạt động của phụ tải theo nhu cầu", isCorrect: false },
+                { text: "Hoạt động theo tín hiệu chỉ dẫn của khối điều khiển", isCorrect: false },
+                { text: "Mang tín hiệu chỉ dẫn hoạt động của phụ tải điện", isCorrect: false }
+            ]
+        },
+        {
+            id: 32,
+            question: "Đâu là chức năng của mô đun cảm biến ánh sáng?",
+            options: [
+                { text: "Thiết kế hệ thống chiếu sáng tự động", isCorrect: true },
+                { text: "Thiết kế mạch tưới nước tự động", isCorrect: false },
+                { text: "Thiết kế mạch điều khiển nhiệt độ tự động", isCorrect: false },
+                { text: "Thiết kế mạch báo hiệu có khí", isCorrect: false }
+            ]
+        },
+        {
+            id: 33,
+            question: "Đâu là vai trò của điều khiển?",
+            options: [
+                { text: "Cung cấp năng lượng cho toàn mạch", isCorrect: false },
+                { text: "Điều khiển hoạt động của phụ tải theo nhu cầu", isCorrect: true },
+                { text: "Hoạt động theo tín hiệu chỉ dẫn của khối điều khiển", isCorrect: false },
+                { text: "Mang tín hiệu chỉ dẫn hoạt động của phụ tải điện", isCorrect: false }
+            ]
+        },
+        {
+            id: 34,
+            question: "Đâu là chức năng của mô đun cảm biến nhiệt độ?",
+            options: [
+                { text: "Thiết kế hệ thống chiếu sáng tự động", isCorrect: false },
+                { text: "Thiết kế mạch tưới nước tự động", isCorrect: false },
+                { text: "Thiết kế mạch điều khiển nhiệt độ tự động", isCorrect: true },
+                { text: "Thiết kế mạch báo hiệu có khí", isCorrect: false }
             ]
         }
     ];
 
     const quizContainer = document.getElementById('quiz-container');
 
-    // Hàm xáo trộn mảng (Fisher-Yates Shuffle)
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -358,19 +455,15 @@
         return array;
     }
 
-    // Biến lưu trữ cấu trúc câu hỏi đã xáo trộn để dùng lúc chấm điểm
     let shuffledQuizData = [];
 
-    // Render câu hỏi ra giao diện
     function renderQuiz() {
-        quizContainer.innerHTML = ''; // Xóa nội dung cũ nếu có
-        shuffledQuizData = []; // Làm rỗng mảng lưu trữ
+        quizContainer.innerHTML = ''; 
+        shuffledQuizData = []; 
 
         quizData.forEach((q) => {
-            // Copy mảng options để không làm thay đổi mảng gốc
             let shuffledOptions = shuffleArray([...q.options]);
             
-            // Lưu lại cấu trúc câu hỏi đã xáo trộn
             shuffledQuizData.push({
                 id: q.id,
                 options: shuffledOptions
@@ -383,12 +476,10 @@
             let html = `<div class="question-title">Câu ${q.id}: ${q.question}</div>`;
             html += `<div class="options">`;
             
-            // Gán nhãn A, B, C, D dựa theo thứ tự sau khi xáo trộn
             const labels = ['A', 'B', 'C', 'D'];
             
             shuffledOptions.forEach((opt, index) => {
                 const labelLetter = labels[index];
-                // Sử dụng index của option làm giá trị (value) để dễ dàng kiểm tra sau này
                 html += `
                     <label id="label-${q.id}-${index}">
                         <input type="radio" name="q${q.id}" value="${index}"> 
@@ -403,21 +494,17 @@
         });
     }
 
-    // Xử lý nộp bài và chấm điểm
     function submitQuiz() {
         let score = 0;
         let total = shuffledQuizData.length;
 
         shuffledQuizData.forEach((q) => {
-            // Lấy đáp án người dùng chọn
             const selectedOption = document.querySelector(`input[name="q${q.id}"]:checked`);
             
-            // Xóa các class đánh dấu cũ (nếu người dùng nộp lại nhiều lần)
             q.options.forEach((opt, index) => {
                 document.getElementById(`label-${q.id}-${index}`).classList.remove('correct-answer', 'wrong-answer');
             });
 
-            // Tìm index của đáp án đúng trong mảng đã xáo trộn
             const correctIndex = q.options.findIndex(opt => opt.isCorrect === true);
 
             if (selectedOption) {
@@ -425,27 +512,21 @@
                 
                 if (userAnswerIndex === correctIndex) {
                     score++;
-                    // Đánh dấu xanh cho đáp án đúng
                     document.getElementById(`label-${q.id}-${userAnswerIndex}`).classList.add('correct-answer');
                 } else {
-                    // Đánh dấu đỏ cho đáp án sai
                     document.getElementById(`label-${q.id}-${userAnswerIndex}`).classList.add('wrong-answer');
-                    // Hiển thị đáp án đúng
                     document.getElementById(`label-${q.id}-${correctIndex}`).classList.add('correct-answer');
                 }
             } else {
-                // Nếu không chọn, chỉ hiển thị đáp án đúng
                 document.getElementById(`label-${q.id}-${correctIndex}`).classList.add('correct-answer');
             }
         });
 
-        // Hiển thị điểm số
         const resultDiv = document.getElementById('result');
         resultDiv.innerHTML = `Bạn đạt được: ${score} / ${total} câu!`;
         window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }
 
-    // Khởi tạo trang web khi tải xong
     renderQuiz();
 </script>
 
